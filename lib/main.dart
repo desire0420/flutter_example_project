@@ -6,6 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_test_demo/pageview/example.dart';
 
 import 'A_page.dart';
+import 'WebViewExample.dart';
 import 'barrage/barrage.dart';
 import 'barrage/huya_barrage.dart';
 import 'live_clear_page.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LiveClearPage(),
+      home: WebViewExample(),
     );
   }
 }

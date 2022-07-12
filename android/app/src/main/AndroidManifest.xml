@@ -35,5 +35,30 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+
+     <provider
+       android:name="androidx.core.content.FileProvider"
+       android:authorities="com.example.flutter_test_demo.fileprovider"
+       android:exported="false"
+       android:grantUriPermissions="true"
+       >
+       <meta-data
+         android:name="android.support.FILE_PROVIDER_PATHS"
+         android:resource="@xml/file_paths" />
+     </provider>
+
     </application>
+  <!-- The INTERNET permission is required for development. Specifically,
+      flutter needs it to communicate with the running application
+      to allow setting breakpoints, to provide hot reload, etc.
+ -->
+  <uses-permission android:name="android.permission.INTERNET"/>
+
+  <!-- When tests are ran on Firebase Test Lab, a wake lock
+       permission failure prevents tests from running.
+  -->
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>
