@@ -3,8 +3,6 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'live_clear_drawer.dart';
-
 class PageViewBody extends StatefulWidget {
   final int index;
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -26,15 +24,11 @@ class _PageViewBodyState extends State<PageViewBody> {
   @override
   void initState() {
     super.initState();
-    debugPrint("--PageViewBody--initState--${randomInt}");
     _controller = PageController(initialPage: currentPage);
     _controller?.addListener(() {});
   }
 
-  bool vis = true;
   PageController? _controller;
-
-  bool endDrawerEnableGesture = false;
 
   @override
   void dispose() {
@@ -47,63 +41,87 @@ class _PageViewBodyState extends State<PageViewBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      drawerEdgeDragWidth: double.infinity,
+      //drawerEdgeDragWidth: double.infinity,
       drawerScrimColor: Colors.transparent,
       endDrawerEnableOpenDragGesture: false,
       onEndDrawerChanged: (isOpened) {
-        debugPrint("-----isOpened----${isOpened}");
+        debugPrint("-----isOpened-1---${isOpened}");
       },
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
-      endDrawer: Drawer(
-        child: Center(
-          child: ListView(
-            children: const [
-              ListTile(
-                leading: Icon(Icons.child_friendly),
-                title: Text("item 1"),
+      endDrawer: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(margin: EdgeInsets.only(top: 90), child: Icon(Icons.child_friendly)),
+          Container(
+            color: Colors.white,
+            width: 130,
+            child: Center(
+              child: Column(
+                children: const [
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1"),
+                  Text("item 1")
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          )
+        ],
       ),
       body: Container(
         alignment: Alignment.center,
         color: Colors.transparent,
         width: double.infinity,
         height: double.infinity,
-        child: Listener(
-          onPointerDown: (PointerDownEvent event) {},
-          onPointerUp: (PointerUpEvent event) {
-            // debugPrint("-----currentPage----${currentPage}");
-            // if (currentPage == 1) {
-            //   scaffoldKey.currentState?.openEndDrawer();
-            // }
-
-          },
-          child: PageView(
-              //当页面选中后回调此方法
-              //参数[index]是当前滑动到的页面角标索引 从0开始
-              onPageChanged: (int index) {
-                setState(() {
-                  currentPage = index;
-                });
-              },
-              controller: _controller,
-              //滑动到页面底部无回弹效果
-              physics: const AlwaysScrollableScrollPhysics(),
-              //纵向滑动切换
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  color: Colors.transparent,
-                  padding: const EdgeInsets.all(10),
+        child: PageView(
+            //当页面选中后回调此方法
+            //参数[index]是当前滑动到的页面角标索引 从0开始
+            onPageChanged: (int index) {
+              setState(() {
+                currentPage = index;
+              });
+            },
+            controller: _controller,
+            //滑动到页面底部无回弹效果
+            physics: const AlwaysScrollableScrollPhysics(),
+            //纵向滑动切换
+            scrollDirection: Axis.horizontal,
+            children: [
+              Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.transparent,
+                padding: const EdgeInsets.all(10),
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                height: double.infinity,
+                color: Color(0x47dd3434),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(margin: EdgeInsets.only(top: 60), child: Icon(Icons.ice_skating_outlined)),
+                    InkWell(
+                      child: Text("为你推荐"),
+                      onTap: () {
+                        scaffoldKey.currentState?.openEndDrawer();
+                      },
+                    ),
+                    Container(child: Text("DPage")),
+                    Text("DPage"),
+                    Text("DPage"),
+                  ],
                 ),
-                LiveClearDrawer()
-              ]),
-        ),
+              )
+            ]),
       ),
     );
   }

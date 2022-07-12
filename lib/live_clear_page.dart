@@ -36,31 +36,37 @@ class _LiveClearPageState extends State<LiveClearPage> {
     return SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: PageView.builder(
-            //当页面选中后回调此方法
-            //参数[index]是当前滑动到的页面角标索引 从0开始
-            onPageChanged: (int index) {},
-            itemCount: list.length,
-            //滑动到页面底部无回弹效果
-            physics: const BouncingScrollPhysics(),
-            //纵向滑动切换
-            scrollDirection: Axis.vertical,
-            //所有的子Widget
-            itemBuilder: (BuildContext context, int index) {
-              return Stack(
-                children: [
-                  Image.asset(
-                    list[index],
-                    fit: BoxFit.fill,
-                    height: double.infinity,
-                    width: double.infinity,
-                  ),
-                  PageViewBody(
-                    index: index,
-                    scaffoldKey: scaffoldKey,
-                  ),
-                ],
-              );
-            }));
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (OverscrollIndicatorNotification? overscroll) {
+            overscroll!.disallowIndicator();
+            return true;
+          },
+          child: PageView.builder(
+              //当页面选中后回调此方法
+              //参数[index]是当前滑动到的页面角标索引 从0开始
+              onPageChanged: (int index) {},
+              itemCount: list.length,
+              //滑动到页面底部无回弹效果
+              physics: const BouncingScrollPhysics(),
+              //纵向滑动切换
+              scrollDirection: Axis.vertical,
+              //所有的子Widget
+              itemBuilder: (BuildContext context, int index) {
+                return Stack(
+                  children: [
+                    Image.asset(
+                      list[index],
+                      fit: BoxFit.fill,
+                      height: double.infinity,
+                      width: double.infinity,
+                    ),
+                    PageViewBody(
+                      index: index,
+                      scaffoldKey: scaffoldKey,
+                    ),
+                  ],
+                );
+              }),
+        ));
   }
 }
