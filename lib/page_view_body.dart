@@ -41,38 +41,43 @@ class _PageViewBodyState extends State<PageViewBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      //drawerEdgeDragWidth: double.infinity,
+      drawerEdgeDragWidth: 130,
       drawerScrimColor: Colors.transparent,
-      endDrawerEnableOpenDragGesture: false,
+      endDrawerEnableOpenDragGesture: currentPage == 1,
       onEndDrawerChanged: (isOpened) {
         debugPrint("-----isOpened-1---${isOpened}");
       },
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
-      endDrawer: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(margin: EdgeInsets.only(top: 90), child: Icon(Icons.child_friendly)),
-          Container(
-            color: Colors.white,
-            width: 130,
-            child: Center(
-              child: Column(
-                children: const [
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1"),
-                  Text("item 1")
-                ],
-              ),
-            ),
-          )
-        ],
+      endDrawer: ConstrainedBox (
+        constraints: BoxConstraints(maxWidth: 160),
+        child: Drawer(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(margin: EdgeInsets.only(top: 90), child: Icon(Icons.child_friendly)),
+              Container(
+                color: Colors.white,
+                width: 130,
+                child: Center(
+                  child: Column(
+                    children: const [
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1"),
+                      Text("item 1")
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
       body: Container(
         alignment: Alignment.center,
