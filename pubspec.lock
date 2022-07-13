@@ -111,6 +111,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_inner_drawer:
+    dependency: "direct main"
+    description:
+      name: flutter_inner_drawer
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0+1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -191,6 +198,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.7.0"
+  multilevel_drawer:
+    dependency: "direct main"
+    description:
+      name: multilevel_drawer
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.0.0"
   path:
     dependency: transitive
     description:
