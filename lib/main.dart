@@ -77,7 +77,7 @@ class _BarrageTest extends State<BarrageTest> {
             ),
           ),
           SizedBox(height: 40),
-          RaisedButton(
+          TextButton(
             child: Text('发送'),
             onPressed: () {
               Random random = Random();
